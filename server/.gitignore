@@ -1,0 +1,5 @@
+dist
+attachments
+.env
+.env.*
+!.env.example
