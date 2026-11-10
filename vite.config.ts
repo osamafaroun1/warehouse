@@ -4,7 +4,7 @@ import solid from 'vite-plugin-solid';
 
 const host = process.env.TAURI_DEV_HOST;
 
-const BASE_SERVER_DEV = 'http://localhost:3004';
+const BASE_SERVER_DEV = 'http://10.10.151.171:3004';
 
 // API endpoints (production and development)
 const API_PATH = '/api';

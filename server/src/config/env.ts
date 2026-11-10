@@ -68,6 +68,10 @@ export const env = {
     // this once you run more than one instance).
     redisUrl: process.env.REDIS_URL,
 
+    // Cookies: 'Secure' cookies are rejected by browsers on plain HTTP (LAN IP).
+    // Set COOKIE_SECURE=true ONLY when the site is served over HTTPS.
+    cookieSecure: process.env.COOKIE_SECURE === 'true',
+
     // CORS
     corsOrigins: (process.env.CORS_ORIGINS ?? '').split(',').filter(Boolean),
 };

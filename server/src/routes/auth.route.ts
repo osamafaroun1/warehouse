@@ -13,8 +13,6 @@ import { AuthService } from '../services/auth.service';
 const authRoutes = new Hono<{ Variables: AppVariables }>();
 const authService = new AuthService();
 
-const isProduction = env.nodeEnv === 'production';
-
 function setAuthCookies(
     c: AppContext,
     tokens: {
@@ -24,16 +22,16 @@ function setAuthCookies(
 ) {
     setCookie(c, 'accessToken', tokens.accessToken, {
         httpOnly: true,
-        secure: true, // Change to isProduction when hosting
-        sameSite: 'None', // Change to Lax when hosting
+        secure: env.cookieSecure,
+        sameSite: 'Lax',
         path: '/',
         maxAge: 15 * 60,
     });
 
     setCookie(c, 'refreshToken', tokens.refreshToken, {
         httpOnly: true,
-        secure: true, // Change to isProduction when hosting
-        sameSite: 'None', // Change to Lax when hosting
+        secure: env.cookieSecure,
+        sameSite: 'Lax',
         path: '/api/auth',
         maxAge: 30 * 24 * 60 * 60,
     });
